@@ -3,6 +3,7 @@ import { Offers } from "../services/upcitemdb";
 
 interface ItemDocument {
   upc: number;
+  userId: Types.ObjectId;
   ean: string;
   title: string;
   description: string;
@@ -14,8 +15,8 @@ interface ItemDocument {
   category: string;
   weight: string;
   currency: string;
-  lowestPrice: string;
-  highestPrice: string;
+  lowest_recorded_price: number;
+  highest_recorded_price: number;
   images: Types.Array<string>;
   asin: string;
   elid: string;
@@ -40,6 +41,7 @@ const offerSchema = new Schema<Offers>({
 const itemSchema = new Schema<ItemDocument, Model<ItemDocument>>(
   {
     upc: String,
+    userId: Types.ObjectId,
     ean: String,
     title: String,
     description: String,
@@ -51,8 +53,8 @@ const itemSchema = new Schema<ItemDocument, Model<ItemDocument>>(
     category: String,
     weight: String,
     currency: String,
-    lowestPrice: Number,
-    highestPrice: Number,
+    lowest_recorded_price: Number,
+    highest_recorded_price: Number,
     asin: String,
     elid: String,
     gtin: String,
